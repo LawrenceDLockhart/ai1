@@ -12,7 +12,7 @@ import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatModel;
 import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatOptions;
 
-@Route("gemini")
+@Route("")
 public class GeminiView extends VerticalLayout {
     private final String projectId = "ai1fortutorial";
     private final String location = "us-central1";
@@ -41,7 +41,6 @@ public class GeminiView extends VerticalLayout {
                 output.setText("Prompt cannot be empty. Please enter a valid prompt.");
             }
         });
-
         add(gprompt, button, output);
     }
 }

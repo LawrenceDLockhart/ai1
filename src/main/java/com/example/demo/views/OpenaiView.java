@@ -6,7 +6,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-@Route("")
+@Route("openai")
 public class OpenaiView extends VerticalLayout {
     public OpenaiView() {
         var input = new TextField("Input prompt here");
