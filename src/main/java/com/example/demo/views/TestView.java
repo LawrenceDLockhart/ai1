@@ -7,10 +7,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatModel;
 
-@Route("")
-public class GeminiView extends VerticalLayout {
+@Route("test")
+public class TestView extends VerticalLayout {
 
-    public GeminiView(VertexAiGeminiChatModel chatModel) {
+    public TestView(VertexAiGeminiChatModel chatModel) {
 
         var input = new TextField("Input prompt here");
         var submit = new Button("Submit");
