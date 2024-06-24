@@ -1,0 +1,52 @@
+.chat-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+input-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+submit-button {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+}
+.message-layout {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sender-span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.message-span {
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
+vaadin-text-area {
+    width: 100%;
+    min-height: 100px;
+    resize: none;
+}
+
+vaadin-button {
+    margin-left: 10px;
+}
+
+
+response-paragraph {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
