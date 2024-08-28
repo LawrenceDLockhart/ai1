@@ -6,38 +6,61 @@
     border-radius: 10px;
     background-color: #f9f9f9;
 }
-
-input-field {
-    width: 100%;
-    margin-bottom: 10px;
+.gemini-view {
+    padding: 20px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-submit-button {
-    display: block;
-    width: 100%;
-    background-color: #007bff;
-    color: white;
-}
-.message-layout {
-    width: 100%;
+.chat-history {
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-bottom: 20px;
+    background-color: #2b2b2b;
     padding: 10px;
-    border-bottom: 1px solid #e0e0e0;
+    border-radius: 5px;
 }
 
-.sender-span {
-    font-weight: bold;
-    margin-right: 5px;
+.chat-bubble {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 60%;
+    word-wrap: break-word;
 }
 
-.message-span {
-    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+.chat-bubble.user {
+    background-color: #d32f2f;
+    color: #ffffff;
+    align-self: flex-start;
 }
 
-vaadin-text-area {
+.chat-bubble.ai {
+    background-color: #444444;
+    color: #ffffff;
+    align-self: flex-end;
+}
+
+.text-field {
     width: 100%;
-    min-height: 100px;
-    resize: none;
+    margin-right: 10px;
 }
+
+.submit-button {
+    background-color: #d32f2f;
+    color: #ffffff;
+}
+
+.clear-button {
+    background-color: #555555;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
 
 vaadin-button {
     margin-left: 10px;
@@ -49,4 +72,40 @@ response-paragraph {
     padding: 10px;
     background-color: #e9ecef;
     border-radius: 5px;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.chat-bubble.user {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: 1px solid #c0392b;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.chat-bubble.ai {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #2c2c2c;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+button {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c0392b;
 }

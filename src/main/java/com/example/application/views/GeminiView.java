@@ -1,59 +1,47 @@
 package com.example.application.views;
 
 
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatModel;
 
 @Route("")
 public class GeminiView extends VerticalLayout {
+    private final VerticalLayout chatMessages = new VerticalLayout();
+    private final TextField input = new TextField("Input prompt here");
+    private final Button submit = new Button("Submit");
+    private final Button clearChat = new Button("Clear Chat");
 
-    private VerticalLayout chatHistory;
+    public GeminiView(VertexAiGeminiChatModel chatModel) {
+        chatMessages.setPadding(false);
+        chatMessages.setSpacing(false);
 
-    public GeminiView() {
-        chatHistory = new VerticalLayout();
-        chatHistory.setWidth("100%");
+        // Wrap chatMessages inside a Scroller for scrollable history
+        Scroller chatHistoryScroller = new Scroller(chatMessages);
+        chatHistoryScroller.setHeight("400px");
+        chatHistoryScroller.setScrollDirection(Scroller.ScrollDirection.VERTICAL);
 
-        TextArea userPrompt = new TextArea("Your Prompt");
-        userPrompt.setWidth("100%");
+        // Input and submit button styling
+        input.setWidthFull();
+        submit.addClassName("submit-button");
+        clearChat.addClassName("clear-button");
 
-        Button sendButton = new Button("Send");
-        sendButton.addClickListener(event -> {
-            String prompt = userPrompt.getValue();
-            if (!prompt.trim().isEmpty()) {
-                addMessageToChat("You", prompt);
-                String response = getResponseFromAI(prompt); // Replace this with the actual call to your AI service
-                addMessageToChat("AI", response);
-                userPrompt.clear();
-            }
+        submit.addClickListener(e -> {
+            String userInput = input.getValue();
+            String aiResponse = chatModel.call(userInput);
+            chatMessages.add(new Html("<div class='chat-bubble user'>You: " + userInput + "</div>"));
+            chatMessages.add(new Html("<div class='chat-bubble ai'>AI: " + aiResponse + "</div>"));
+            input.clear();
+
         });
 
-        HorizontalLayout inputLayout = new HorizontalLayout(userPrompt, sendButton);
-        inputLayout.setWidth("100%");
-        inputLayout.expand(userPrompt);
+        clearChat.addClickListener(e -> chatMessages.removeAll());
 
-        add(chatHistory, inputLayout);
-    }
-
-    private void addMessageToChat(String sender, String message) {
-        HorizontalLayout messageLayout = new HorizontalLayout();
-        messageLayout.addClassName("message-layout");
-
-        Span senderSpan = new Span(sender + ": ");
-        senderSpan.addClassName("sender-span");
-
-        Span messageSpan = new Span(message);
-        messageSpan.addClassName("message-span");
-
-        messageLayout.add(senderSpan, messageSpan);
-        chatHistory.add(messageLayout);
-    }
-
-    private String getResponseFromAI(String prompt) {
-        // Placeholder for the actual call to your AI service.
-        return "This is a response to: " + prompt;
+        add(chatHistoryScroller, input, submit, clearChat);
+        addClassName("gemini-view");
     }
 }
